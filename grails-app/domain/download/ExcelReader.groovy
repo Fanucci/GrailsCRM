@@ -85,10 +85,11 @@ class ExcelReader {
             else{
             CF.setFieldProperty(cell)
             }
-
+            CF.transformNulls()
+          //  println(CF.getFieldName())
         }
-        cont.save()
-        println(cont)
+    //    cont.save(flush:true)
+cont.save()
     }
     
     def readAll(){

@@ -7,7 +7,17 @@ String name
 String property
 int tablePosition
 Type sd
+static belongsTo = download.Contact
+
 public enum Type {TEXT, NUMBER, DATE, TIME, PHONE}
+public ContactField(){
+    this.name=""
+    this.property=""
+    this.tablePosition=0
+    this.sd=ContactField.Type.TEXT
+}
+    
+    
 public ContactField(String n,int tp){
     this.name=n
     this.tablePosition=tp
@@ -26,8 +36,21 @@ public ContactField(String n,String p,int tp,Type t){
     this.sd=t
 }
 public copyObjectParams(ContactField CFs){
-        this=CFs
+    this.name=CFs.getFieldName()
+    this.property=CFs.getFieldProperty()
+    this.tablePosition=CFs.getFieldTablePosition()
+    this.sd=CFs.getFieldType()
 }
+public static makeNewObject(ContactField...v){
+    for (ContactField CFs:v){
+    CFs= new ContactField()
+    }  
+}
+    public transformNulls(){
+        if(this.property==null)this.property=""
+    }
+    
+    
     
 public String getFieldName(){return this.name}
 public void setFieldName(String name){this.name=name}
@@ -41,5 +64,9 @@ public void setFieldTablePosition(int tablePosition){this.tablePosition=tablePos
 public Type getFieldType(){return this.sd}
 public void setFieldType(Type sd){this.sd=sd}
     static constraints = {
+        sd(nullable:true)
+        tablePosition(nullable:true)
+        name(nullable:true)
+        property (nullable:true)
     }
 }

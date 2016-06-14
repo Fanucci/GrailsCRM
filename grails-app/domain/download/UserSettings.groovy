@@ -21,5 +21,6 @@ new ContactField("status",10,ContactField.Type.TEXT)
     new ContactField(phone,0,NUMBER)
 }*/
     static constraints = {
+
     }
 }

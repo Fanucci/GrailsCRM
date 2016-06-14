@@ -19,6 +19,12 @@ class UploadController {
             println(path)
         ExcelReaderInstance.setFileInputStream(fileStream)
         ExcelReaderInstance.readAll()
+        def Contactlist = Contact.getAll()
+        println(Contactlist.size())
+        for(Contact c:Contactlist){
+        println(c.getCF().getFieldProperty())
+        }
+       
         }
         redirect (action:'index')
     }
