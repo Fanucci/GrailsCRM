@@ -53,8 +53,11 @@ CF20= new ContactField()
         }}
 
    }
-   public ContactField getCF(){
-       return CF
+   public String getPropertyOf(String name){
+       for(ContactField CFs:this.getNewBaseFields()){
+           if(CFs.getFieldName()==name) return CFs.getFieldProperty()
+       }
+       return ""
    }
     
    public List<ContactField> getNewBaseFields(){return CFList}

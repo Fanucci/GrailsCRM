@@ -23,11 +23,26 @@
 					<g:submitButton name="upload" class="save" value="Загрузить" />
 				</fieldset>
 			</g:uploadForm>
-    <g:each in="${documentInstanceList}" status="i" var="documentInstance">
-                        <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-                                <td><g:link action="download" id="${documentInstance.id}">${documentInstance.filename}</g:link></td>
-                                <td><g:formatDate date="${documentInstance.uploadDate}" /></td>
-                        </tr>
+                                        
+
+
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+  <thead>
+    <tr>
+      <th class="mdl-data-table__cell--non-numeric">Номер</th>
+      <th>Регион</th>
+    </tr>
+  </thead>
+  <tbody>
+
+                <g:each in="${contactInstanceList}" status="i" var="contactInstance">
+                        <tr>
+      <td class="mdl-data-table__cell--non-numeric">${contactInstance.getPropertyOf("phone")}</td>
+      <td>${contactInstance.getPropertyOf("region")}</td>
+    </tr>
                 </g:each>
+  </tbody>
+</table>
+
     </body>
 </html>

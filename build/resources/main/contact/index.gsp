@@ -21,7 +21,7 @@
 				<thead>
 					<tr>
 						<g:sortableColumn property="FieldSettings" title="FieldSettings" />
-						<g:sortableColumn property="uploadDate" title="Upload Date" />
+						<g:sortableColumn property="other" title="other" />
 					</tr>
 				</thead>
 				<tbody>

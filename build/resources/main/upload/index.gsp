@@ -23,11 +23,23 @@
 					<g:submitButton name="upload" class="save" value="Загрузить" />
 				</fieldset>
 			</g:uploadForm>
-    <g:each in="${documentInstanceList}" status="i" var="documentInstance">
+                                        
+        <table>
+                <thead>
+                        <tr>
+                                <g:sortableColumn property="phone" title="Phone" />
+                                <g:sortableColumn property="region" title="Region" />
+                        </tr>
+                </thead>
+                <tbody>
+                <g:each in="${contactInstanceList}" status="i" var="contactInstance">
                         <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-                                <td><g:link action="download" id="${documentInstance.id}">${documentInstance.filename}</g:link></td>
-                                <td><g:formatDate date="${documentInstance.uploadDate}" /></td>
+                                <td><g:textField name="myField" value="${contactInstance.getPropertyOf("phone")}" /></td>
+                                <td><g:textField name="myField2" value="${contactInstance.getPropertyOf("region")}" /></td>
                         </tr>
                 </g:each>
+                </tbody>
+        </table>
+
     </body>
 </html>

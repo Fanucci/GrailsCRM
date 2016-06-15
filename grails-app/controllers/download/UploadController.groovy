@@ -2,7 +2,10 @@ package download
 
 class UploadController {
 
-    def index() { }
+    def index() {
+            params.max = 10
+        [contactInstanceList: Contact.list(params), contactInstanceTotal: Contact.count()]
+    }
 
     def uploadfile() {
         def file = request.getFile('file')
@@ -19,13 +22,21 @@ class UploadController {
             println(path)
         ExcelReaderInstance.setFileInputStream(fileStream)
         ExcelReaderInstance.readAll()
-        def Contactlist = Contact.getAll()
+
+        /*def Contactlist = Contact.getAll()
         println(Contactlist.size())
         for(Contact c:Contactlist){
         println(c.getCF().getFieldProperty())
         }
-       
+       */
         }
         redirect (action:'index')
     }
+   /*def getPropertyOf(String name){
+       for(ContactField CFs:this.getNewBaseFields()){
+           if(CFs.getFieldName()==name) return CFs.getFieldProperty()
+       }
+       [variableNameInGSP : valueToBeReturned]
+   }*/
+   
 }
