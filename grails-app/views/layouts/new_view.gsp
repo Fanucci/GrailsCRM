@@ -45,8 +45,9 @@
     <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
     <link rel="stylesheet" href="${resource( file: 'mdl-jquery-modal-dialog.css')}">
     <script src="${resource( file: 'mdl-jquery-modal-dialog.js')}"></script>
+    <script src="${resource( file: 'application.js')}"></script>
    
-    
+
 
     
     

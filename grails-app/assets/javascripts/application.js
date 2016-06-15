@@ -19,3 +19,17 @@ if (typeof jQuery !== 'undefined') {
         });
     })(jQuery);
 }
+        $('#show-action').click(function () {
+        showDialog({
+            title: 'Upload Base?',
+            text: 'Вы собираетесь загрузить новую базу.<br/>Продолжить?',
+            negative: {
+                title: 'Нет'
+            },
+            positive: {
+                title: 'Да',
+                onClick: function (e) {
+                action: "${createLink(controller: 'upload', action: 'uploadImage')}",
+                    alert('Загрузилось!');}}
+        });
+    });

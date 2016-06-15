@@ -31,7 +31,6 @@ class ExcelReader {
     def rowIterator;
     def cell;
     def row;
-   // ContactSettings sett;
     
     public setFileInputStream(FileInputStream fileStream){
 
@@ -57,7 +56,7 @@ class ExcelReader {
                 if(v instanceof Double){
                     v=String.valueOf(v);
                 }
-            }   
+            }
             if(cell.getCellType()==Cell.CELL_TYPE_STRING){
                 v = cell.getStringCellValue();
             }

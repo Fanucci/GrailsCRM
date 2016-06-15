@@ -24,22 +24,25 @@
 				</fieldset>
 			</g:uploadForm>
                                         
-        <table>
-                <thead>
-                        <tr>
-                                <g:sortableColumn property="phone" title="Phone" />
-                                <g:sortableColumn property="region" title="Region" />
-                        </tr>
-                </thead>
-                <tbody>
+
+
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+  <thead>
+    <tr>
+      <th class="mdl-data-table__cell--non-numeric">Номер</th>
+      <th>Регион</th>
+    </tr>
+  </thead>
+  <tbody>
+
                 <g:each in="${contactInstanceList}" status="i" var="contactInstance">
-                        <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-                                <td><g:textField name="myField" value="${contactInstance.getPropertyOf("phone")}" /></td>
-                                <td><g:textField name="myField2" value="${contactInstance.getPropertyOf("region")}" /></td>
-                        </tr>
+                        <tr>
+      <td class="mdl-data-table__cell--non-numeric">${contactInstance.getPropertyOf("phone")}</td>
+      <td>${contactInstance.getPropertyOf("region")}</td>
+    </tr>
                 </g:each>
-                </tbody>
-        </table>
+  </tbody>
+</table>
 
     </body>
 </html>

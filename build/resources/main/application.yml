@@ -58,7 +58,7 @@ grails:
             proxies: false
 info:
     app:
-        name: 'Download'
+        name: 'GrailsCRM'
         version: '0.1'
         grailsVersion: '3.1.6'
 spring:
@@ -106,6 +106,10 @@ grails:
             maxsize: 1000
     controllers:
         defaultScope: singleton
+        upload:
+            maxFileSize: 9999999999
+            maxRequestSize: 9999999999
+
     converters:
         encoding: UTF-8
     views:
