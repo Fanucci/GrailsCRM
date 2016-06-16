@@ -10,12 +10,8 @@ class ContactController {
 render "Hello" 
     }
     
-        def download(long id) {
+        def downloads(long id) {
         Document documentInstance = Document.get(id)
-        if ( documentInstance == null) {
-            flash.message = "Document not found."
-            redirect (action:'list')
-        } else {
             response.setContentType("APPLICATION/OCTET-STREAM")
             response.setHeader("Content-Disposition", "Attachment;Filename=\"${documentInstance.filename}\"")
             def file = new File(documentInstance.fullPath)
@@ -29,7 +25,21 @@ render "Hello"
             outputStream.flush()
             outputStream.close()
             fileInputStream.close()
-        }
+        
     }
+            def download() {
+                def XLS= new ExcelReader()
+                XLS.initialize()
+                XLS.writeAllContactRow()
+                def FOS= new FileInputStream(XLS.saveFile())
+            response.setContentType("APPLICATION/OCTET-STREAM")
+            response.setHeader("Content-Disposition", "Attachment;Filename=\"haha.xlsx\"")
+            response.outputStream<<FOS
+            response.outputStream.flush()
+            response.outputStream.close()
+            FOS.close()
+        return
+    }
+    
     
 }

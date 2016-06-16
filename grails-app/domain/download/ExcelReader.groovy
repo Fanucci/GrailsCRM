@@ -19,6 +19,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil
+import org.apache.poi.hssf.usermodel.HSSFWorkbook
 
 class ExcelReader {
     String filename
@@ -33,7 +34,6 @@ class ExcelReader {
     def row;
     
     public setFileInputStream(FileInputStream fileStream){
-
         FileInputStream file = (FileInputStream)fileStream;   
         workbook = new XSSFWorkbook(file);
         sheet = workbook.getSheetAt(0);
@@ -94,6 +94,38 @@ cont.save()
     def readAll(){
         
     while(rowIterator.hasNext()){row = rowIterator.next();readRow();}
+    workbook.close()
+    }
+    
+    def writeContactRow(Contact cont){
+        for(ContactField CFs:cont.getNewBaseFields()){
+            if((CFs.getFieldProperty()!=null)&&(CFs.getFieldTablePosition()!=null)){
+               cell= row.createCell(CFs.getFieldTablePosition())
+               cell.setCellValue(CFs.getFieldProperty());
+            }
+        }
+    }
+    
+    def writeAllContactRow(){
+        def contList = Contact.getAll()
+        int i=0;
+        for (Contact cont:contList){
+            row = sheet.createRow(i)
+            writeContactRow(cont);
+            i++}
+    }
+    public File saveFile(){
+        def file= new File("b.xlsx")
+    FileOutputStream fileOut = new FileOutputStream(file);
+    workbook.write(fileOut);
+    return file;
+    }
+    
+
+    
+    def initialize(){
+            workbook= new XSSFWorkbook();
+    sheet = workbook.createSheet("new sheet");
     }
     
     static constraints = {

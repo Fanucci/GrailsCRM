@@ -51,7 +51,7 @@
             positive: {
                 title: 'Да',
                 onClick: function (e) {
-                location.href="${createLink(controller: 'contact', action: 'doNothing')}";
+                location.href="${createLink(controller: 'contact', action: 'download')}";
                 }}
         });
     });
