@@ -7,7 +7,9 @@ class ContactController {
         [contactInstanceList: Contact.list(params), contactInstanceTotal: Contact.count()]
     }
     def doNothing() {
-render "Hello" 
+   /*   def a = new User(login: "iskandarova", pass: "kotiki").save()
+      def b = new User(login: "luzenin", pass: "parol").save()
+      def c = new User(login: "sda00", pass: "Zxcasd123").save()*/
     }
     
         def downloads(long id) {

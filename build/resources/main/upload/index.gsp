@@ -20,11 +20,9 @@
                     <input type="file" name="file" />
 				</fieldset>
 				<fieldset class="buttons">
-					<g:submitButton name="upload" class="save" value="Загрузить" />
+					<g:submitButton name="upload" value="Загрузить" class="save" />
 				</fieldset>
 			</g:uploadForm>
-                                        
-
 
 <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
   <thead>

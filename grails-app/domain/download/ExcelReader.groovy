@@ -53,9 +53,10 @@ class ExcelReader {
                     return v;
                 }
                 v = cell.getNumericCellValue();
-                if(v instanceof Double){
-                    v=String.valueOf(v);
-                }
+                v=String.valueOf(String.valueOf((int)v))
+               /* if(v instanceof Double){
+                    
+                }*/
             }
             if(cell.getCellType()==Cell.CELL_TYPE_STRING){
                 v = cell.getStringCellValue();
@@ -76,10 +77,13 @@ class ExcelReader {
             CF.setFieldProperty(value)
             }
             else if (CF.getFieldType()==ContactField.Type.TIME){
-            CF.setFieldProperty(cell.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString());
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+            String shortTimeStr = sdf.format(cell);
+            CF.setFieldProperty(shortTimeStr);
             }
             else if (CF.getFieldType()==ContactField.Type.DATE){
-            CF.setFieldProperty(LocalDateTime.ofInstant(Instant.ofEpochMilli(cell.getTime()), ZoneOffset.ofHours(+5)).toString());
+            String date = new SimpleDateFormat("dd-MM-yyyy").format(cell);
+            CF.setFieldProperty(date);
             }
             else{
             CF.setFieldProperty(cell)

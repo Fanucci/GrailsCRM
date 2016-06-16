@@ -5,7 +5,7 @@ class DocumentController {
     static allowedMethods = [save: "POST"]
 
     def index() {
-      
+
     }
     def uploadf() {
             def fileName
