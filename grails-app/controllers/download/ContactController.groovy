@@ -1,5 +1,8 @@
 package download
 
+import grails.plugin.springsecurity.annotation.Secured
+
+@Secured('ROLE_USER')
 class ContactController {
 
     def index() { 

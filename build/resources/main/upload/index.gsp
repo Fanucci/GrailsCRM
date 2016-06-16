@@ -41,6 +41,8 @@
                 </g:each>
   </tbody>
 </table>
-
+    <div id="spinner" class="spinner" style="display:none;">
+        Loading&hellip;
+    </div>
     </body>
 </html>

@@ -10,7 +10,7 @@ class User implements Serializable {
 	private static final long serialVersionUID = 1
 
 	transient springSecurityService
-
+        transient bEncoded = false
 	String username
 	String password
 	boolean enabled = true
@@ -32,9 +32,11 @@ class User implements Serializable {
 		}
 	}
 
-	protected void encodePassword() {
-		password = springSecurityService?.passwordEncoder ? springSecurityService.encodePassword(password) : password
-	}
+    protected void encodePassword() {
+        if (!bEncoded ) { 
+            password = springSecurityService.encodePassword(password); 
+            bEncoded = true; 
+        }}
 
 	static transients = ['springSecurityService']
 

@@ -1,5 +1,7 @@
 package download
+import grails.plugin.springsecurity.annotation.Secured
 
+@Secured('ROLE_USER')
 class UploadController {
 
     def index() {
