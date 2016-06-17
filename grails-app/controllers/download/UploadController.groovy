@@ -10,6 +10,7 @@ class UploadController {
     }
 
     def uploadfile() {
+        TelCodes.getCodes()
         def file = request.getFile('file')
         if(file.empty) {
             flash.message = "File cannot be empty"

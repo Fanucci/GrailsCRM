@@ -88,9 +88,11 @@ class ExcelReader {
             else{
             CF.setFieldProperty(cell)
             }
+            
             CF.transformNulls()
           //  println(CF.getFieldName())
         }
+       
     //    cont.save(flush:true)
 cont.save()
     }
@@ -104,10 +106,19 @@ cont.save()
     def writeContactRow(Contact cont){
         for(ContactField CFs:cont.getNewBaseFields()){
             if((CFs.getFieldProperty()!=null)&&(CFs.getFieldTablePosition()!=null)){
-               cell= row.createCell(CFs.getFieldTablePosition())
-               cell.setCellValue(CFs.getFieldProperty());
+                if (CFs.getFieldName()=="region"){                          //temp
+                cell= row.createCell(CFs.getFieldTablePosition())           
+                def ddd=TelCodes.checkNumber(cont.getPropertyOf("phone"))  
+                cell.setCellValue(ddd);
+                }                                                           //temp
+                else{
+                cell= row.createCell(CFs.getFieldTablePosition())
+                cell.setCellValue(CFs.getFieldProperty());
+                }
+                
             }
         }
+
     }
     
     def writeAllContactRow(){

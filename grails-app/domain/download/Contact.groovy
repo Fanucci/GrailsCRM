@@ -62,17 +62,9 @@ CF20= new ContactField()
     
    public List<ContactField> getNewBaseFields(){return CFList}
 
- /*  def dynamicProperties= [:]
-   //setter
-   def propertyMissing(String name, value) { dynamicProperties[name] = value }
-   //getter
-   def propertyMissing(String name) { dynamicProperties= [name] }
-   
-        def writeContactFields(){
-    for(ContactField CF:listOfFields){
-        this."ip${CF.getFieldName()}" = CF.getFieldProperty()
+    def beforeValidate() {
+        
     }
-}*/
 
     static constraints = {
         contactfields(nullable:true)
