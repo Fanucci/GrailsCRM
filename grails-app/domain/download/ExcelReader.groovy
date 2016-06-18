@@ -114,8 +114,9 @@ cont.save()
                 else{
                 cell= row.createCell(CFs.getFieldTablePosition())
                 cell.setCellValue(CFs.getFieldProperty());
-                }
                 
+                }
+                if(CFs.getFieldType()==(ContactField.Type.PHONE||ContactField.Type.NUMBER))cell.setCellType(Cell.CELL_TYPE_NUMERIC)
             }
         }
 

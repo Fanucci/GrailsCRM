@@ -8,7 +8,7 @@ new ContactField("2time",2,ContactField.Type.TIME),
 new ContactField("IP",3,ContactField.Type.TEXT),
 new ContactField("promo",4,ContactField.Type.TEXT),
 new ContactField("referal",6,ContactField.Type.TEXT),
-//new ContactField("dateActive",7,ContactField.Type.DATE),
+new ContactField("dateActive",7,ContactField.Type.TEXT),
 new ContactField("UTC",8,ContactField.Type.TEXT),
 new ContactField("region",9,ContactField.Type.TEXT),
 new ContactField("status",10,ContactField.Type.TEXT)

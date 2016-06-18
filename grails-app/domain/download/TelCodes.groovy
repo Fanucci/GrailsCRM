@@ -10,7 +10,7 @@ int numTo
 String region
 
     def static getCodes(){
-          CSVReader reader = new CSVReader(new FileReader("C:/Personal Soft/grails-3.1.6/WebRegions/Kody_DEF-9kh.csv"),(char) ';');
+          CSVReader reader = new CSVReader(new BufferedReader(new FileReader("C:/Personal Soft/grails-3.1.6/WebRegions/Kody_DEF-9kh.csv")),(char) ';');
        
      String [] nextLine;
   reader.readNext();
@@ -28,8 +28,15 @@ String region
     def static String checkNumber(String num){
          int dig3 = Integer.parseInt(num.substring(1,4));
             int dig7 = Integer.parseInt(num.substring(4,11));
-            def TelCodes1 = TelCodes.getAll();
-            for(TelCodesInst in TelCodes1){
+         //   def TelCodes1 = TelCodes.getAll();
+            def results = TelCodes.find {
+            ABCDEF == dig3
+            numFrom<dig7
+            numTo>dig7
+            }
+            println results.region
+            return results.region
+         /*   for(TelCodesInst in TelCodes1){
                 
             System.out.println(dig3+":::"+TelCodesInst.ABCDEF);
             if (dig3.equals(TelCodesInst.ABCDEF)){  		 
@@ -37,7 +44,8 @@ String region
             if( dig7<TelCodesInst.numTo){
           //  System.out.println(TelCodesInst.region);
             return TelCodesInst.region;
-            }}}}}
+            }}}}*/
+}
     
     static constraints = {
     }
