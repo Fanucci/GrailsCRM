@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><g:layoutTitle default="Grails"/></title>
-        
+
             <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>Material Design Lite</title>
@@ -41,16 +41,16 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.cyan-light_blue.min.css">
     <link rel="stylesheet" href="${resource( file: 'styles.css')}" />
     <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
-    
+
     <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
     <link rel="stylesheet" href="${resource( file: 'mdl-jquery-modal-dialog.css')}">
     <script src="${resource( file: 'mdl-jquery-modal-dialog.js')}"></script>
     <script src="${resource( file: 'application.js')}"></script>
-   
 
 
-    
-    
+
+
+
     <style>
     #view-source {
       position: fixed;
@@ -62,7 +62,7 @@
       z-index: 900;
     }
     </style>
-        
+
         <g:layoutHead/>
     </head>
     <body>
@@ -94,7 +94,11 @@
         <header class="demo-drawer-header">
           <img src="${resource( file: 'user.jpg')}" class="demo-avatar">
           <div class="demo-avatar-dropdown">
-            <span>hello@example.com</span>
+            <span>
+
+Welcome Back <sec:loggedInUserInfo field='username'/>
+
+</span>
             <div class="mdl-layout-spacer"></div>
             <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
               <i class="material-icons" role="presentation">arrow_drop_down</i>

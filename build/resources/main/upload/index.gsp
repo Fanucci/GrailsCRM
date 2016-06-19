@@ -13,36 +13,65 @@
         <title>Sample title</title>
     </head>
     <body>
-              <main class="mdl-layout__content mdl-color--grey-100">
-        <div class="mdl-grid demo-content">
-                    			<g:uploadForm action="uploadfile">
-				<fieldset class="form">
-                    <input type="file" name="file" />
-				</fieldset>
-				<fieldset class="buttons">
-					<g:submitButton name="upload" value="Загрузить" class="save" />
-				</fieldset>
-			</g:uploadForm>
+        <main class="mdl-layout__content mdl-color--grey-100">
+            <div class="mdl-grid demo-content">
+                <g:uploadForm action="uploadfile">
+                    <fieldset class="form">
+                        <input type="file" name="file" />
+                    </fieldset>
+                    <fieldset class="buttons">
+                        <g:submitButton name="upload" value="Загрузить" class="save" />
+                    </fieldset>
+                </g:uploadForm>
+                <g:if test="${contactInstanceList[0]!=null}">
+                    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                        <thead>
+                            <tr>
+                                <g:each in="${contactInstanceList[0].contactfields}" status="z" var="contactField1">
+                                    <th class="mdl-data-table__cell--non-numeric">${contactField1.getFieldName()}</th>
+                                    </g:each>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <g:each in="${contactInstanceList}" var="contactInstance">
+                                <tr>
+                                    <g:each in="${contactInstance.contactfields}" status="x" var="contactField">
+                                        <td class="mdl-data-table__cell--non-numeric">${contactField.getFieldProperty()}</td>
+                                    </g:each>
+                                </tr>
+                            </g:each>
+                        </tbody>
+                    </table>
+                </g:if>
 
-<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-  <thead>
-    <tr>
-      <th class="mdl-data-table__cell--non-numeric">Номер</th>
-      <th>Регион</th>
-    </tr>
-  </thead>
-  <tbody>
+<g:form name="myForm" action="divideBase" controller="contact">
+                <div class="demo-options mdl-card mdl-color--deep-purple-500 mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--12-col-desktop">
+                    <div class="mdl-card__supporting-text mdl-color-text--blue-grey-50">
+                        <h3>Разделить на:</h3>
+                        <ul>
 
-                <g:each in="${contactInstanceList}" status="i" var="contactInstance">
-                        <tr>
-      <td class="mdl-data-table__cell--non-numeric">${contactInstance.getPropertyOf("phone")}</td>
-      <td>${contactInstance.getPropertyOf("region")}</td>
-    </tr>
-                </g:each>
-  </tbody>
-</table>
-    <div id="spinner" class="spinner" style="display:none;">
-        Loading&hellip;
-    </div>
-    </body>
-</html>
+                            <g:each in="${userList}" status="i" var="it">
+                                <li>
+                                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                                        <g:checkBox name="myCheckbox" value="${it.id}" class="mdl-checkbox__input" />
+                                        <span class="mdl-checkbox__label">${it.username}</span>
+                                    </label>
+                                </li>
+                            </g:each>
+                        </ul>
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-50">Change location</a>
+                        <div class="mdl-layout-spacer"></div>
+                        <i class="material-icons">location_on</i>
+                    </div>
+                </div>
+                <g:submitButton name="update" value="Update" />
+                <g:link controller="contact" action="divideBase" class="mdl-button mdl-js-button mdl-js-ripple-effect">Поделить</g:link>
+</g:form>
+                <div id="spinner" class="spinner" style="display:none;">
+                    Loading&hellip;
+                </div>
+                </div>
+                </body>
+                </html>

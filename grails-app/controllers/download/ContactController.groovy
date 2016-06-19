@@ -1,40 +1,40 @@
 package download
 
+import com.CRM.User
 import grails.plugin.springsecurity.annotation.Secured
 
 @Secured('ROLE_USER')
 class ContactController {
 
-    def index() { 
-        params.max = 10
+    def index() {
+        params.max = 30
         [contactInstanceList: Contact.list(params), contactInstanceTotal: Contact.count()]
     }
-    def doNothing() {
-   /*   def a = new User(login: "iskandarova", pass: "kotiki").save()
-      def b = new User(login: "luzenin", pass: "parol").save()
-      def c = new User(login: "sda00", pass: "Zxcasd123").save()*/
+@Secured('ROLE_ADMIN')
+def divideBase(){
+    def checkedUsers = params.list('myCheckbox')
+    println checkedUsers.size()
+    def selectedUsers = User.getAll(checkedUsers)
+    println selectedUsers.get(0)
+    def it=Contact.getAll().listIterator()
+    while(it.hasNext()){
+    for (User u:selectedUsers){
+        if(it.hasNext()){
+        def cont=it.next()
+        println cont
+        println u
+        cont.owner=u
+        cont.save()
+        }
     }
-    
-        def downloads(long id) {
-        Document documentInstance = Document.get(id)
-            response.setContentType("APPLICATION/OCTET-STREAM")
-            response.setHeader("Content-Disposition", "Attachment;Filename=\"${documentInstance.filename}\"")
-            def file = new File(documentInstance.fullPath)
-            def fileInputStream = new FileInputStream(file)
-            def outputStream = response.getOutputStream()
-            byte[] buffer = new byte[4096];
-            int len;
-            while ((len = fileInputStream.read(buffer)) > 0) {
-                outputStream.write(buffer, 0, len);
-            }
-            outputStream.flush()
-            outputStream.close()
-            fileInputStream.close()
-        
     }
+    redirect(controller: "upload", action: "index")
+}
+
             def download() {
                 def XLS= new ExcelReader()
                 XLS.initialize()
+                XLS.setUser(getAuthenticatedUser())
                 XLS.writeAllContactRow()
                 def FOS= new FileInputStream(XLS.saveFile())
             response.setContentType("APPLICATION/OCTET-STREAM")
@@ -45,6 +45,8 @@ class ContactController {
             FOS.close()
         return
     }
-    
-    
+def findContact(){
+params.search
+}
+
 }

@@ -15,24 +15,27 @@
     <body>
               <main class="mdl-layout__content mdl-color--grey-100">
    <div class="mdl-grid demo-content">   
+<g:if test="${contactInstanceList[0]!=null}">
 <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
   <thead>
     <tr>
-      <th class="mdl-data-table__cell--non-numeric">Номер</th>
-      <th>Регион</th>
+       <g:each in="${contactInstanceList[0].contactfields}" status="z" var="contactField1">
+                <th class="mdl-data-table__cell--non-numeric">${contactField1.getFieldName()}</th>
+      </g:each>
     </tr>
   </thead>
   <tbody>
-
                 <g:each in="${contactInstanceList}" status="i" var="contactInstance">
                         <tr>
-      <td class="mdl-data-table__cell--non-numeric">${contactInstance.getPropertyOf("phone")}</td>
-      <td>${contactInstance.getPropertyOf("region")}</td>
+                            <g:each in="${contactInstance.contactfields}" status="x" var="contactField">
+                <td class="mdl-data-table__cell--non-numeric">${contactField.getFieldProperty()}</td>
+      </g:each>
     </tr>
                 </g:each>
   </tbody>
 </table>
-</div>  
+</g:if>
+
 
 			<div class="pagination">
 				<g:paginate total="${contactInstanceTotal}" />
@@ -56,5 +59,6 @@
         });
     });
     </script>
+    </div>  
     </body>
 </html>

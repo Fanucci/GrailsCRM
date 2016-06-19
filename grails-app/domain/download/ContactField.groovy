@@ -7,7 +7,7 @@ String name
 String property
 int tablePosition
 Type sd
-static belongsTo = download.Contact
+static belongsTo = [contact: Contact]
 
 public enum Type {TEXT, NUMBER, DATE, TIME, PHONE}
 public ContactField(){
