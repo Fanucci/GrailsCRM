@@ -9,9 +9,9 @@ class BootStrap {
       def adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true)
       def userRole = new Role(authority: 'ROLE_USER').save(flush: true)
 
-      def sda00 = new User(username: 'sda00', password: 'Zxcasd123').save(flush: true)
-      def iskandarova = new User(username: 'iskandarova', password: 'kotiki').save(flush: true)
-      def luzenin = new User(username: 'luzenin', password: 'test').save(flush: true)
+      def sda00 = new User(username: 'sda00', password: 'Zxcasd123', firstname:'Дмитрий').save(flush: true)
+      def iskandarova = new User(username: 'iskandarova', password: 'kotiki', firstname:'Наталья').save(flush: true)
+      def luzenin = new User(username: 'luzenin', password: 'test', firstname:'Сергей').save(flush: true)
 
       UserRole.create sda00, adminRole
       UserRole.create sda00, userRole
@@ -23,8 +23,5 @@ class BootStrap {
          it.clear()
       }
 
-
-      User p = User.find { username == "sda00" }
-      println(p.username)
    }
 }

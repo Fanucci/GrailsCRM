@@ -23,13 +23,14 @@
                         <g:submitButton name="upload" value="Загрузить" class="save" />
                     </fieldset>
                 </g:uploadForm>
-                <g:if test="${contactInstanceList[0]!=null}">
+                 <g:if test="${contactInstanceList[0]!=null}">
                     <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
                         <thead>
                             <tr>
                                 <g:each in="${contactInstanceList[0].contactfields}" status="z" var="contactField1">
                                     <th class="mdl-data-table__cell--non-numeric">${contactField1.getFieldName()}</th>
                                     </g:each>
+                                    <th class="mdl-data-table__cell--non-numeric">Owner</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -38,7 +39,9 @@
                                     <g:each in="${contactInstance.contactfields}" status="x" var="contactField">
                                         <td class="mdl-data-table__cell--non-numeric">${contactField.getFieldProperty()}</td>
                                     </g:each>
+                                    <td class="mdl-data-table__cell--non-numeric">${contactInstance.getOwnerUsername()}</td>
                                 </tr>
+
                             </g:each>
                         </tbody>
                     </table>
@@ -61,13 +64,13 @@
                         </ul>
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-50">Change location</a>
+                        <g:submitButton name="update" value="Поделить" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-50" />
                         <div class="mdl-layout-spacer"></div>
-                        <i class="material-icons">location_on</i>
+                        <i class="material-icons">format_list_numbered</i>
                     </div>
                 </div>
-                <g:submitButton name="update" value="Update" />
-                <g:link controller="contact" action="divideBase" class="mdl-button mdl-js-button mdl-js-ripple-effect">Поделить</g:link>
+<g:link controller="upload" action="getCodes" class="mdl-button mdl-js-button mdl-js-ripple-effect">Добавить коды</g:link>
+
 </g:form>
                 <div id="spinner" class="spinner" style="display:none;">
                     Loading&hellip;

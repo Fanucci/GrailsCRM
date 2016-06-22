@@ -17,6 +17,11 @@ class Contact {
         }
     }
 
+    public String getOwnerUsername(){
+        if (owner==null)return null
+        return this.owner.username
+    }
+
     public String getPropertyOf(String name){
         for(ContactField CFs:this.contactfields){
             if(CFs.getFieldName()==name) return CFs.getFieldProperty()
@@ -24,10 +29,23 @@ class Contact {
         return "-"
     }
 
+    public static List<Contact> getAllContactsWithSubstring(String ss){
+        List<Contact> contactList= new ArrayList<Contact>()
 
-    def beforeValidate() {
-
+        def s=ContactField.findAllByPropertyLike('%%'+ss+'%%')
+        println s.size()
+        for(ContactField c:s)contactList.add(c.contact)
+       /* def cont
+        for(Contact c:Contact.getAll()){
+            cont=c
+        for(ContactField cf:c.contactfields){
+        if(cf.getFieldProperty().toLowerCase().contains(ss.trim().toLowerCase()))contactList.add(cont)
+        }
+        }*/
+return contactList
     }
+
+
 
     static constraints = {
         contactfields(nullable:true)

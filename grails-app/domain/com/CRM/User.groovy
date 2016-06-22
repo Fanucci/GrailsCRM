@@ -12,6 +12,8 @@ class User implements Serializable {
 	transient springSecurityService
         transient bEncoded = false
 	String username
+        String firstname
+        String lastname
 	String password
 	boolean enabled = true
 	boolean accountExpired
@@ -33,9 +35,9 @@ class User implements Serializable {
 	}
 
     protected void encodePassword() {
-        if (!bEncoded ) { 
-            password = springSecurityService.encodePassword(password); 
-            bEncoded = true; 
+        if (!bEncoded ) {
+            password = springSecurityService.encodePassword(password);
+            bEncoded = true;
         }}
 
 	static transients = ['springSecurityService']
@@ -43,6 +45,8 @@ class User implements Serializable {
 	static constraints = {
 		password blank: false, password: true
 		username blank: false, unique: true
+                firstname (nullable:true)
+                lastname (nullable:true)
 	}
 
 	static mapping = {

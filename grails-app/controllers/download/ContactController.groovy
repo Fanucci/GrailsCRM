@@ -16,13 +16,11 @@ def divideBase(){
     println checkedUsers.size()
     def selectedUsers = User.getAll(checkedUsers)
     println selectedUsers.get(0)
-    def it=Contact.getAll().listIterator()
+    def it=Contact.findAllByOwner(null).listIterator()
     while(it.hasNext()){
     for (User u:selectedUsers){
         if(it.hasNext()){
         def cont=it.next()
-        println cont
-        println u
         cont.owner=u
         cont.save()
         }
@@ -46,7 +44,12 @@ def divideBase(){
         return
     }
 def findContact(){
-params.search
+def input= params.search
+println input
+List<Contact> cl=Contact.getAllContactsWithSubstring(input)
+/*if (pl.size()==0){pl.add(new Contact())}
+println pl.size*/
+[contactInstanceList: cl, contactInstanceTotal: cl.size()]
 }
 
 }

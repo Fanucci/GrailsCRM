@@ -49,25 +49,6 @@
               </div>
               <div class="mdl-card__actions mdl-card--border">
               
-              <button id="show-action" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-    Show Action
-            </button>
-    <script>
-        $('#show-action').click(function () {
-        showDialog({
-            title: 'Upload Base?',
-            text: 'Вы собираетесь загрузить новую базу.<br/>Продолжить?',
-            negative: {
-                title: 'Нет'
-            },
-            positive: {
-                title: 'Да',
-                onClick: function (e) {
-                action: "${createLink(controller: 'upload', action: 'uploadImage')}",
-                    alert('Загрузилось!');}}
-        });
-    });
-    </script>
     <g:link controller="upload" action="index" class="mdl-button mdl-js-button mdl-js-ripple-effect">Загрузить базу</g:link>
               </div>
             </div>
@@ -160,6 +141,6 @@
         </defs>
       </svg>
       <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a>
-    
+
   </body>
 </html>

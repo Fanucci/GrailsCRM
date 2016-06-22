@@ -11,9 +11,13 @@ class UploadController {
         [contactInstanceList: Contact.list(params), contactInstanceTotal: Contact.count(), userList:User.getAll()]
     }
 
+    def getCodes(){
+        TelCodes.getCodes()
+    }
+
     def uploadfile() {
 
-        TelCodes.getCodes()
+
         def file = request.getFile('file')
         if(file.empty) {
             flash.message = "File cannot be empty"

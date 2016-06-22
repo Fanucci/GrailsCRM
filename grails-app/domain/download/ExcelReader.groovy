@@ -72,32 +72,44 @@ String fullPath
 
     def readRow(){
         def cont = new Contact()
+
+
         cont.save()
         cont.addBlankContactFields()
         def NBF = cont.contactfields
         for (ContactField CF:NBF){
-
+        def cell2=row.getCell(CF.getFieldTablePosition())
+        boolean isDate= false
+        if(cell2!=null&&cell2.getCellType()==Cell.CELL_TYPE_NUMERIC){isDate=HSSFDateUtil.isCellDateFormatted(cell2)}
             cell = readCellValue(CF.getFieldTablePosition());
+            if(cell!=null){
             if (CF.getFieldType()==ContactField.Type.PHONE){
-                cell=row.getCell(CF.getFieldTablePosition())
+                cell=cell2
                 String value = new DecimalFormat("#.#######################").format(cell.getNumericCellValue());
                 //    System.out.println("["+value+"]");
                 CF.setFieldProperty(value)
             }
-            else if (CF.getFieldType()==ContactField.Type.TIME){
+            else if ((CF.getFieldType()==ContactField.Type.TIME)&&isDate){
                 SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
                 String shortTimeStr = sdf.format(cell);
                 CF.setFieldProperty(shortTimeStr);
             }
-            else if (CF.getFieldType()==ContactField.Type.DATE){
+            else if ((CF.getFieldType()==ContactField.Type.DATE)&&isDate){
                 String date = new SimpleDateFormat("dd-MM-yyyy").format(cell);
                 CF.setFieldProperty(date);
+            }
+            else if(CF.getFieldName()=="IP"){
+                if(Character.getType(cell.charAt(cell.length()-1))==Character.DIRECTIONALITY_WHITESPACE){
+                    CF.setFieldProperty(cell.substring(0, cell.length()-3))
+                }
+                else CF.setFieldProperty(cell)
             }
             else{
                 CF.setFieldProperty(cell)
             }
-
+}
             CF.transformNulls()
+
             //  println(CF.getFieldName())
         }
         cont.owner=user
@@ -109,6 +121,7 @@ String fullPath
     def readAll(){
 
         while(rowIterator.hasNext()){row = rowIterator.next();readRow();}
+        println "done"
         workbook.close()
     }
 

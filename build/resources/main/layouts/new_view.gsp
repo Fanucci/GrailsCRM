@@ -71,15 +71,17 @@
         <div class="mdl-layout__header-row">
           <span class="mdl-layout-title">Home</span>
           <div class="mdl-layout-spacer"></div>
+          <g:form name="myForm" action="findContact" controller="contact">
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
             <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
               <i class="material-icons">search</i>
             </label>
             <div class="mdl-textfield__expandable-holder">
-              <input class="mdl-textfield__input" type="text" id="search">
-              <label class="mdl-textfield__label" for="search">Enter your query...</label>
+                <g:textField class="mdl-textfield__input" name="search" value="${search}"> </g:textField>
+              <label class="mdl-textfield__label" value="${search}" for="search">Enter your query...</label>
             </div>
           </div>
+          </g:form>
           <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
             <i class="material-icons">more_vert</i>
           </button>
@@ -95,9 +97,7 @@
           <img src="${resource( file: 'user.jpg')}" class="demo-avatar">
           <div class="demo-avatar-dropdown">
             <span>
-
-Welcome Back <sec:loggedInUserInfo field='username'/>
-
+<sec:loggedInUserInfo field='username'/>
 </span>
             <div class="mdl-layout-spacer"></div>
             <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
