@@ -14,7 +14,7 @@
     </head>
     <body>
               <main class="mdl-layout__content mdl-color--grey-100">
-   <div class="mdl-grid demo-content">   
+   <div class="mdl-grid">
 <g:if test="${contactInstanceList[0]!=null}">
 <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
   <thead>
@@ -28,8 +28,10 @@
                 <g:each in="${contactInstanceList}" status="i" var="contactInstance">
                         <tr>
                             <g:each in="${contactInstance.contactfields}" status="x" var="contactField">
-                <td class="mdl-data-table__cell--non-numeric">${contactField.getFieldProperty()}</td>
+                <td onclick="alert('You are clicking on the cell EXAMPLE')" class="mdl-data-table__cell--non-numeric">${contactField.getFieldProperty()}</td>
       </g:each>
+      <td class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"><i class="material-icons">add</i></td>
+
     </tr>
                 </g:each>
   </tbody>
@@ -39,12 +41,12 @@
 
 			<div class="pagination">
 				<g:paginate total="${contactInstanceTotal}" />
-			</div>       
+			</div>
               <button id="show-action" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
     Show Action
             </button>
     <script>
-        $('#show-action').click(function () {
+  $('#show-action').click(function () {
         showDialog({
             title: 'Upload Base?',
             text: 'Вы собираетесь dsuhepbnm базу.<br/>Продолжить?',
@@ -59,6 +61,6 @@
         });
     });
     </script>
-    </div>  
+    </div>
     </body>
 </html>

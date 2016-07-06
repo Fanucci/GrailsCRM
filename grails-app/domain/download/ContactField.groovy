@@ -7,7 +7,7 @@ String name
 String property
 int tablePosition
 Type sd
-static belongsTo = [contact: Contact]
+static belongsTo = [contact: Contact, filter: Filter]
 
 public enum Type {TEXT, NUMBER, DATE, TIME, PHONE}
 public ContactField(){
@@ -16,14 +16,14 @@ public ContactField(){
     this.tablePosition=0
     this.sd=ContactField.Type.TEXT
 }
-    
-    
+
+
 public ContactField(String n,int tp){
     this.name=n
     this.tablePosition=tp
 
 }
-    
+
 public ContactField(String n,int tp, Type t){
     this.name=n
     this.tablePosition=tp
@@ -44,20 +44,20 @@ public copyObjectParams(ContactField CFs){
 public static makeNewObject(ContactField...v){
     for (ContactField CFs:v){
     CFs= new ContactField()
-    }  
+    }
 }
     public transformNulls(){
         if(this.property==null)this.property=""
     }
-    
-    
-    
+
+
+
 public String getFieldName(){return this.name}
 public void setFieldName(String name){this.name=name}
-    
+
 public String getFieldProperty(){return this.property}
 public void setFieldProperty(String property){this.property=property}
-    
+
 public int getFieldTablePosition(){return this.tablePosition}
 public void setFieldTablePosition(int tablePosition){this.tablePosition=tablePosition}
 

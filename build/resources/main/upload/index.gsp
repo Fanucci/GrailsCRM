@@ -14,7 +14,7 @@
     </head>
     <body>
         <main class="mdl-layout__content mdl-color--grey-100">
-            <div class="mdl-grid demo-content">
+            <div class="mdl-grid">
                 <g:uploadForm action="uploadfile">
                     <fieldset class="form">
                         <input type="file" name="file" />
@@ -24,13 +24,14 @@
                     </fieldset>
                 </g:uploadForm>
                  <g:if test="${contactInstanceList[0]!=null}">
-                    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" >
                         <thead>
                             <tr>
                                 <g:each in="${contactInstanceList[0].contactfields}" status="z" var="contactField1">
                                     <th class="mdl-data-table__cell--non-numeric">${contactField1.getFieldName()}</th>
                                     </g:each>
                                     <th class="mdl-data-table__cell--non-numeric">Owner</th>
+                                    <th class="mdl-data-table__cell--non-numeric">Редактировать</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,8 +41,8 @@
                                         <td class="mdl-data-table__cell--non-numeric">${contactField.getFieldProperty()}</td>
                                     </g:each>
                                     <td class="mdl-data-table__cell--non-numeric">${contactInstance.getOwnerUsername()}</td>
+                                    <td class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect"><i class="material-icons">input</i></td>
                                 </tr>
-
                             </g:each>
                         </tbody>
                     </table>

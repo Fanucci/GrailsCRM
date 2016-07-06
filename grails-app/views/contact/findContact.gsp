@@ -14,7 +14,7 @@
     </head>
     <body>
         <main class="mdl-layout__content mdl-color--grey-100">
-            <div class="mdl-grid demo-content">
+            <div class="mdl-grid">
           <g:form name="myForm" action="findContact" controller="contact">
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
             <label class="mdl-button mdl-js-button mdl-button--icon" for="search2">
