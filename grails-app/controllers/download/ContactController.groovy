@@ -47,9 +47,14 @@ def findContact(){
 def input= params.search
 println input
 List<Contact> cl=Contact.getAllContactsWithSubstring(input)
-/*if (pl.size()==0){pl.add(new Contact())}
-println pl.size*/
 [contactInstanceList: cl, contactInstanceTotal: cl.size()]
 }
+
+  def showContactCard(){
+      println params.id
+      def contactfields = Contact.get(params.id).contactfields
+      [contactfieldsList: contactfields]
+      render(view: "ContactCard")
+  }  
 
 }
