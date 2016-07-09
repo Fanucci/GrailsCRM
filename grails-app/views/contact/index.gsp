@@ -8,15 +8,14 @@
 
 <html>
     <head>
-        <meta name="layout" content="new_view">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Sample title</title>
     </head>
     <body>
-              <main class="mdl-layout__content mdl-color--grey-100">
-   <div class="mdl-grid">
+              <main class="mdl-layout__content mdl-color--grey-100" >
+
 <g:if test="${contactInstanceList[0]!=null}">
-<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+<table style="width: 100%" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
   <thead>
     <tr>
        <g:each in="${contactInstanceList[0].contactfields}" status="z" var="contactField1">
@@ -26,12 +25,10 @@
   </thead>
   <tbody>
                 <g:each in="${contactInstanceList}" status="i" var="contactInstance">
-                        <tr>
+                        <tr id="ss">
                             <g:each in="${contactInstance.contactfields}" status="x" var="contactField">
-                <td onclick="alert('You are clicking on the cell EXAMPLE')" class="mdl-data-table__cell--non-numeric">${contactField.getFieldProperty()}</td>
+                <td numid="${contactInstance.id}" class="mdl-data-table__cell--non-numeric">${contactField.getFieldProperty()}</td>
       </g:each>
-      <td class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"><i class="material-icons">add</i></td>
-
     </tr>
                 </g:each>
   </tbody>
@@ -41,12 +38,12 @@
 
 			<div class="pagination">
 				<g:paginate total="${contactInstanceTotal}" />
-			</div>
+			</div>       
               <button id="show-action" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
     Show Action
             </button>
     <script>
-  $('#show-action').click(function () {
+        $('#show-action').click(function () {
         showDialog({
             title: 'Upload Base?',
             text: 'Вы собираетесь dsuhepbnm базу.<br/>Продолжить?',
@@ -60,7 +57,13 @@
                 }}
         });
     });
+    
+            $('#ss td').click(function () {
+            var id2=$(this).attr('numid');
+
+       location.href="${createLink(controller: 'contact', action: 'showContactCard', id: id2 )}?id="+ escape(id2);
+    });
     </script>
-    </div>
+</main>
     </body>
 </html>

@@ -8,6 +8,7 @@ class ContactController {
 
     def index() {
         params.max = 30
+       
         [contactInstanceList: Contact.list(params), contactInstanceTotal: Contact.count()]
     }
 @Secured('ROLE_ADMIN')
@@ -26,7 +27,7 @@ def divideBase(){
         }
     }
     }
-    redirect(controller: "upload", action: "index")
+    return ''
 }
 
             def download() {
@@ -41,7 +42,7 @@ def divideBase(){
             response.outputStream.flush()
             response.outputStream.close()
             FOS.close()
-        return
+        return ''
     }
 def findContact(){
 def input= params.search

@@ -8,7 +8,7 @@ class UrlMappings {
                 // apply constraints here
             }
         }
-"/" (controller:"document", action:"index")
+"/" (controller:"mainpage", action:"index")
    //     "/"(view:"/index")
         "500"(view:'/error')
         "404"(view:'/notFound')

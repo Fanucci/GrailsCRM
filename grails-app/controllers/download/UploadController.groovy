@@ -35,7 +35,8 @@ class UploadController {
         ExcelReaderInstance.readAll()
 
         }
-        redirect (action:'index')
+         System.out.println(Contact.get(1).contactfields[0].getFieldName()+Contact.get(1).contactfields[0].getFieldProperty())
+  return ''
     }
 
 
