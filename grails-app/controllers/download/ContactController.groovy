@@ -54,8 +54,7 @@ List<Contact> cl=Contact.getAllContactsWithSubstring(input)
   def showContactCard(){
       println params.id
       def contactfields = Contact.get(params.id).contactfields
-      [contactfieldsList: contactfields]
-      render(view: "ContactCard")
+      render(view: "ContactCard", model: [contactfieldsList: contactfields])
   }  
 
 }

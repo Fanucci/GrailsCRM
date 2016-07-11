@@ -9,7 +9,7 @@ class TelCodes {
     String region
 
     def static getCodes(){
-        CSVReader reader = new CSVReader(new BufferedReader(new FileReader("C:/Users/Dmitry Sorokin/Documents/NetBeansProjects/GrailsCRM1/Kody.csv")),(char) ';');
+        CSVReader reader = new CSVReader(new BufferedReader(new FileReader("C:/Users/DS/Documents/NetBeansProjects/GrailsCRM/Kody.csv")),(char) ';');
         String [] nextLine;
         reader.readNext();
         while ((nextLine = reader.readNext()) != null) {

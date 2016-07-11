@@ -38,12 +38,11 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.cyan-light_blue.min.css">
-    <link rel="stylesheet" href="${resource( file: 'styles.css')}" />
-    <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
-
-    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" href="${resource( file: 'material.cyan-light_blue.min.css')}">
     <link rel="stylesheet" href="${resource( file: 'mdl-jquery-modal-dialog.css')}">
+    <link rel="stylesheet" href="${resource( file: 'styles.css')}" />
+    <script src="${resource( file: 'material.min.js')}"></script>
+    <script src="${resource( file: 'jquery-3.0.0.min.js')}"></script>
     <script src="${resource( file: 'mdl-jquery-modal-dialog.js')}"></script>
     <script src="${resource( file: 'application.js')}"></script>
 
@@ -65,13 +64,7 @@
 
               <script type = "text/javascript" language = "javascript">
          $(document).ready(function() {
-            $("#document").click(function(event){
-               $('#pageContent').load('http://localhost:8080/document/index');
-            });
-            $("#contact").click(function(event){
-               $('#pageContent').load('http://localhost:8080/contact/index');
-            });
-            
+
             
                      $("#navss a").click(function(e) {
     // prevent from going to the page
@@ -80,6 +73,7 @@
     // get the href
     var href = $(this).attr("href");
     $("#pageContent").load(href, function() {
+    $('#pageContent').trigger('create');
         // do something after content has been loaded
     });
 });
@@ -156,7 +150,7 @@
       </div>
       <main class="mdl-layout__content mdl-color--grey-100" >
             <div id = "pageContent" >
-         STAGE
+         
       </div>
     </body>
 </html>

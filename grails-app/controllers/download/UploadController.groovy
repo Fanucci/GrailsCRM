@@ -13,6 +13,7 @@ class UploadController {
 
     def getCodes(){
         TelCodes.getCodes()
+        println "codes read"
     }
 
     def uploadfile() {
@@ -27,16 +28,15 @@ class UploadController {
             ExcelReaderInstance.fullPath = grailsApplication.config.uploadFolder + ExcelReaderInstance.filename
            /* file.transferTo(new File(jobInstance.fullPath))
             jobInstance.save()*/
-            String path = "c:/Data/"+ExcelReaderInstance.filename
             InputStream fileStream = file.getInputStream()
-            println(path)
+   
         //    ExcelReaderInstance.setUser(getAuthenticatedUser())
         ExcelReaderInstance.setFileInputStream(fileStream)
         ExcelReaderInstance.readAll()
 
         }
          System.out.println(Contact.get(1).contactfields[0].getFieldName()+Contact.get(1).contactfields[0].getFieldProperty())
-  return ''
+  render ""
     }
 
 
